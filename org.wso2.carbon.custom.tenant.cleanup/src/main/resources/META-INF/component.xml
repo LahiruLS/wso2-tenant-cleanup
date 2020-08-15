@@ -1,0 +1,16 @@
+<component xmlns="http://products.wso2.org/carbon">
+    <ManagementPermissions>
+        <ManagementPermission>
+            <DisplayName>Custom</DisplayName>
+            <ResourceId>/permission/admin/manage/custom</ResourceId>
+        </ManagementPermission>
+        <ManagementPermission>
+            <DisplayName>Tenant</DisplayName>
+            <ResourceId>/permission/admin/manage/custom/tenant</ResourceId>
+        </ManagementPermission>
+        <ManagementPermission>
+            <DisplayName>Delete</DisplayName>
+            <ResourceId>/permission/admin/manage/custom/tenant/delete</ResourceId>
+        </ManagementPermission>
+    </ManagementPermissions>
+</component>

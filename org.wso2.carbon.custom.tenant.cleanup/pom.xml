@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>org.wso2.carbon</groupId>
+        <artifactId>carbon-kernel</artifactId>
+        <version>4.6.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.wso2.carbon.custom.tenant.cleanup</groupId>
+    <artifactId>org.wso2.carbon.custom.tenant.cleanup</artifactId>
+    <version>2.2.0</version>
+    <name>An admin service to cleanup a tenant</name>
+    <packaging>bundle</packaging>
+    <url>http://www.wso2.com</url>
+
+    <properties>
+        <commons.logging.version>1.2</commons.logging.version>
+        <carbon.database.utils.version>2.0.11</carbon.database.utils.version>
+        <multitenancy.version>4.8.1</multitenancy.version>
+        <carbon.identity.framework.version>5.17.5</carbon.identity.framework.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>commons-lang.wso2</groupId>
+            <artifactId>commons-lang</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.wso2.carbon.multitenancy</groupId>
+            <artifactId>org.wso2.carbon.tenant.mgt</artifactId>
+            <version>${multitenancy.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.wso2.carbon</groupId>
+            <artifactId>javax.cache.wso2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.wso2.carbon</groupId>
+            <artifactId>org.wso2.carbon.registry.core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.wso2.carbon</groupId>
+            <artifactId>org.wso2.carbon.user.core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.wso2.eclipse.osgi</groupId>
+            <artifactId>org.eclipse.osgi.services</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>${commons.logging.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.wso2.carbon.utils</groupId>
+            <artifactId>org.wso2.carbon.database.utils</artifactId>
+            <version>${carbon.database.utils.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.wso2.carbon.identity.framework</groupId>
+            <artifactId>org.wso2.carbon.identity.core</artifactId>
+            <version>${carbon.identity.framework.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-scr-plugin</artifactId>
+                <version>${maven.scr.plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                        <Bundle-Name>${project.artifactId}</Bundle-Name>
+                        <Private-Package>org.wso2.carbon.custom.tenant.cleanup.internal</Private-Package>
+                        <Import-Package>
+                            org.osgi.framework; version="${import.osgi.framework.version.range}",
+                            org.osgi.service.component; version="${import.osgi.service.component.version.range}",
+                            org.apache.commons.logging; version="${import.package.version.commons.logging}",
+                            org.wso2.carbon.utils;version="${carbon.kernel.imp.pkg.version}",
+                            org.apache.axiom.*; version="${axiom.osgi.version.range}",
+                            org.wso2.carbon.database.utils.*;version="${carbon.database.utils.version}",
+                        </Import-Package>
+                        <Export-Package>
+                            !org.wso2.carbon.custom.tenant.cleanup.internal,
+                            org.wso2.carbon.custom.tenant.cleanup.*; version="${project.version}",
+                        </Export-Package>
+                        <DynamicImport-Package>*</DynamicImport-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
