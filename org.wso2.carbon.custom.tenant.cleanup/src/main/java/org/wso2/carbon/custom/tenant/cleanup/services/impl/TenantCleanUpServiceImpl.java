@@ -5,6 +5,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.wso2.carbon.CarbonConstants;
 import org.wso2.carbon.caching.impl.CacheManagerFactoryImpl;
+import org.wso2.carbon.context.PrivilegedCarbonContext;
 import org.wso2.carbon.custom.tenant.cleanup.exception.TenantCleanUpServiceException;
 import org.wso2.carbon.custom.tenant.cleanup.internal.TenantCleanUpComponentServiceHolder;
 import org.wso2.carbon.custom.tenant.cleanup.model.ServiceResponse;
@@ -334,11 +335,18 @@ public class TenantCleanUpServiceImpl implements TenantCleanUpService {
         if (log.isDebugEnabled()) {
             log.debug("Remove all caches of the tenantId: " + tenantId + ", tenantDomain: " + tenantDomain);
         }
-        ((CacheManagerFactoryImpl) Caching.getCacheManagerFactory()).removeAllCacheManagers(tenantDomain);
-        ((CacheManagerFactoryImpl) Caching.getCacheManagerFactory()).removeCacheManagerMap(tenantDomain);
-        if (log.isDebugEnabled()) {
-            log.debug("Successfully remove all caches and cache managers of the tenantId: " + tenantId + ", " +
-                    "tenantDomain: " + tenantDomain);
+        try {
+            PrivilegedCarbonContext.startTenantFlow();
+            PrivilegedCarbonContext carbonContext = PrivilegedCarbonContext.getThreadLocalCarbonContext();
+            carbonContext.setTenantDomain(tenantDomain, true);
+            ((CacheManagerFactoryImpl) Caching.getCacheManagerFactory()).removeAllCacheManagers(tenantDomain);
+            ((CacheManagerFactoryImpl) Caching.getCacheManagerFactory()).removeCacheManagerMap(tenantDomain);
+            if (log.isDebugEnabled()) {
+                log.debug("Successfully remove all caches and cache managers of the tenantId: " + tenantId + ", " +
+                        "tenantDomain: " + tenantDomain);
+            }
+        } finally {
+            PrivilegedCarbonContext.endTenantFlow();
         }
     }
 
