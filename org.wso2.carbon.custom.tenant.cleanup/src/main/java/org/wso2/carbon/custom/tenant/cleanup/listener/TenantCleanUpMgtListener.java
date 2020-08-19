@@ -116,7 +116,7 @@ public class TenantCleanUpMgtListener extends AbstractIdentityTenantMgtListener 
                                                                    String tenantDomain) throws StratosException {
 
         if (realmConfiguration == null) {
-            throw new StratosException("Error: Bootstrap realm config return as null.");
+            throw new StratosException("Error: Bootstrap realm config is null.");
         }
         String newDnOfOrganizationalContext = null;
         DirContext dirContext = null;
@@ -159,7 +159,7 @@ public class TenantCleanUpMgtListener extends AbstractIdentityTenantMgtListener 
 
     private void removeUserPortalServiceProvider(int tenantId, String tenantDomain) {
 
-        //TODO:Need to check if the user portal service provider is available and delete it. This is only relavant
+        //TODO:Need to check if the user portal service provider is available and delete it. This is only relevant
         // for Identity server 5.10.0
     }
 }
