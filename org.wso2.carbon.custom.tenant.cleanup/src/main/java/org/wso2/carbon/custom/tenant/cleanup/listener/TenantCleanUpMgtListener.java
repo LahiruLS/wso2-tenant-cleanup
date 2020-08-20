@@ -164,12 +164,13 @@ public class TenantCleanUpMgtListener extends AbstractIdentityTenantMgtListener 
         // for Identity server 5.10.0
     }
 
+    @Override
     public void onTenantActivation(int tenantId) throws StratosException {
 
         try {
             onPreTenantActivation(tenantId);
         } catch (StratosException sx) {
-            //TODO: This is a workaround until the listeners are fully flexible to handle the PreTenant Activation
+            //TODO: This is a workaround until the listeners are fully flexible to handle the Pre Tenant Activation
             try {
                 //deactivate the incorrectly activated tenant
                 TenantMgtUtil.deactivateTenant(TenantCleanUpUtils.getTenantDomain(tenantId),

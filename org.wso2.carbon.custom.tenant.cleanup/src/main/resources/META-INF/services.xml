@@ -11,25 +11,25 @@
         </parameter>
         <operation name="getTenantIdentifier">
             <parameter name="AuthorizationAction" locked="true">
-                /permission/admin/manage/custom/tenant/delete
+                /permission/protected/manage/modify/tenants
             </parameter>
         </operation>
         <operation name="cleanupTenant">
             <parameter name="AuthorizationAction" locked="true">
-                /permission/admin/manage/custom/tenant/delete
+                /permission/protected/manage/modify/tenants
             </parameter>
         </operation>
         <operation name="verifyTenantCleanUp">
             <parameter name="AuthorizationAction" locked="true">
-                /permission/admin/manage/custom/tenant/delete
+                /permission/protected/manage/modify/tenants
             </parameter>
         </operation>
         <operation name="isTenantDeleted">
             <parameter name="AuthorizationAction" locked="true">
-                /permission/admin/manage/custom/tenant/delete
+                /permission/protected/manage/modify/tenants
             </parameter>
         </operation>
-        <parameter name="AuthorizationAction" locked="false">/permission/admin/manage/custom/tenant/delete</parameter>
+        <parameter name="AuthorizationAction" locked="false">/permission/protected/manage/modify/tenants</parameter>
         <parameter name="adminService" locked="true">true</parameter>
     </service>
 
