@@ -134,7 +134,7 @@ public class TenantCleanUpMgtListener extends AbstractIdentityTenantMgtListener 
             String dnOfOrganizationalContext = organizationNameAttribute + "=" + tenantDomain + "," +
                     partitionDN;
             newDnOfOrganizationalContext =
-                    organizationNameAttribute + "=" + TenantCleanUpUtils.buildMarkedTenantDomain(tenantDomain) +
+                    organizationNameAttribute + "=" + TenantCleanUpUtils.buildMarkedTenantDomain(tenantDomain) + "," +
                             partitionDN;
             dirContext.rename(dnOfOrganizationalContext, newDnOfOrganizationalContext);
             //TODO:Need to rename groups and the users entries as well
