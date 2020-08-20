@@ -10,6 +10,7 @@ import org.wso2.carbon.custom.tenant.cleanup.utils.TenantCleanUpConstants;
 import org.wso2.carbon.custom.tenant.cleanup.utils.TenantCleanUpUtils;
 import org.wso2.carbon.identity.core.AbstractIdentityTenantMgtListener;
 import org.wso2.carbon.stratos.common.exception.StratosException;
+import org.wso2.carbon.tenant.mgt.util.TenantMgtUtil;
 import org.wso2.carbon.user.api.RealmConfiguration;
 import org.wso2.carbon.user.core.UserCoreConstants;
 import org.wso2.carbon.user.core.UserStoreException;
@@ -161,5 +162,22 @@ public class TenantCleanUpMgtListener extends AbstractIdentityTenantMgtListener 
 
         //TODO:Need to check if the user portal service provider is available and delete it. This is only relevant
         // for Identity server 5.10.0
+    }
+
+    public void onTenantActivation(int tenantId) throws StratosException {
+
+        try {
+            onPreTenantActivation(tenantId);
+        } catch (StratosException sx) {
+            //TODO: This is a workaround until the listeners are fully flexible to handle the PreTenant Activation
+            try {
+                //deactivate the incorrectly activated tenant
+                TenantMgtUtil.deactivateTenant(TenantCleanUpUtils.getTenantDomain(tenantId),
+                        TenantCleanUpComponentServiceHolder.getTenantManager(), tenantId);
+            } catch (Exception e) {
+                log.error(e);
+            }
+            throw new StratosException(sx);
+        }
     }
 }
