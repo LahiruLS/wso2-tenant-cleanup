@@ -49,9 +49,9 @@ public class TenantCleanUpAdminService extends AbstractAdmin {
      * @param tenantDomain tenant domain
      * @return If an error occurred during the flow appropriate the error message will return.
      */
-    public Boolean verifyTenantDeletion(String tenantDomain) {
+    public Boolean isTenantDeleted(String tenantDomain) {
 
         TenantCleanUpServiceImpl tenantCleanUpService = TenantCleanUpServiceImpl.getInstance();
-        return tenantCleanUpService.verifyTenantDeletion(tenantDomain);
+        return tenantCleanUpService.isTenantDeleted(tenantDomain);
     }
 }

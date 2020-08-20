@@ -24,7 +24,7 @@
                 /permission/admin/manage/custom/tenant/delete
             </parameter>
         </operation>
-        <operation name="verifyTenantDeletion">
+        <operation name="isTenantDeleted">
             <parameter name="AuthorizationAction" locked="true">
                 /permission/admin/manage/custom/tenant/delete
             </parameter>

@@ -166,7 +166,7 @@ public class TenantCleanUpServiceImpl implements TenantCleanUpService {
      * @return If an error occurred during the flow appropriate the error message will return.
      */
     @Override
-    public Boolean verifyTenantDeletion(String tenantDomain) {
+    public Boolean isTenantDeleted(String tenantDomain) {
 
         boolean verification;
         try {
