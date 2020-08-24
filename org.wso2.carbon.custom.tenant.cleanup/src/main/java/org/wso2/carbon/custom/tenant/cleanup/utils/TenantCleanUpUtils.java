@@ -206,7 +206,7 @@ public class TenantCleanUpUtils {
         //check if the tenant is already marked for deletion
         if (StringUtils.startsWith(domainName, TenantCleanUpConstants.prefix)) {
             String msg =
-                    "Illegal Attempt! Trying to clean up tenant already marked for deletion. Invalid tenant domain " +
+                    "Illegal Attempt! Trying to retrieve tenant Id which already marked for deletion. Invalid tenant domain " +
                             "starting with: " + TenantCleanUpConstants.prefix;
             if (log.isDebugEnabled()) {
                 log.debug(msg);

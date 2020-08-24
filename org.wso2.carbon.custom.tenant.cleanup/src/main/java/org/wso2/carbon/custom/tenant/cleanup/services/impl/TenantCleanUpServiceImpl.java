@@ -166,7 +166,7 @@ public class TenantCleanUpServiceImpl implements TenantCleanUpService {
      * @return If an error occurred during the flow appropriate the error message will return.
      */
     @Override
-    public Boolean verifyTenantDeletion(String tenantDomain) {
+    public Boolean isTenantDeleted(String tenantDomain) {
 
         boolean verification;
         try {
@@ -335,18 +335,11 @@ public class TenantCleanUpServiceImpl implements TenantCleanUpService {
         if (log.isDebugEnabled()) {
             log.debug("Remove all caches of the tenantId: " + tenantId + ", tenantDomain: " + tenantDomain);
         }
-        try {
-            PrivilegedCarbonContext.startTenantFlow();
-            PrivilegedCarbonContext carbonContext = PrivilegedCarbonContext.getThreadLocalCarbonContext();
-            carbonContext.setTenantDomain(tenantDomain, true);
-            ((CacheManagerFactoryImpl) Caching.getCacheManagerFactory()).removeAllCacheManagers(tenantDomain);
-            ((CacheManagerFactoryImpl) Caching.getCacheManagerFactory()).removeCacheManagerMap(tenantDomain);
-            if (log.isDebugEnabled()) {
-                log.debug("Successfully remove all caches and cache managers of the tenantId: " + tenantId + ", " +
-                        "tenantDomain: " + tenantDomain);
-            }
-        } finally {
-            PrivilegedCarbonContext.endTenantFlow();
+        ((CacheManagerFactoryImpl) Caching.getCacheManagerFactory()).removeAllCacheManagers(tenantDomain);
+        ((CacheManagerFactoryImpl) Caching.getCacheManagerFactory()).removeCacheManagerMap(tenantDomain);
+        if (log.isDebugEnabled()) {
+            log.debug("Successfully remove all caches and cache managers of the tenantId: " + tenantId + ", " +
+                    "tenantDomain: " + tenantDomain);
         }
     }
 

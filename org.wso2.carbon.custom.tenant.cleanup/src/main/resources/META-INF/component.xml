@@ -1,4 +1,6 @@
 <component xmlns="http://products.wso2.org/carbon">
+    <!--This is a example template to create a custom permission to call this admin service. The definitions of the
+    custom permission can be as below, If a custom permission is used we need to change the permissions in the services.xml file.-->
     <ManagementPermissions>
         <ManagementPermission>
             <DisplayName>Custom</DisplayName>

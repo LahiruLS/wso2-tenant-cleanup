@@ -35,6 +35,5 @@ public interface TenantCleanUpService {
      * @param tenantDomain tenant domain
      * @return If an error occurred during the flow appropriate the error message will return.
      */
-    Boolean verifyTenantDeletion(String tenantDomain);
+    Boolean isTenantDeleted(String tenantDomain);
 }
-
