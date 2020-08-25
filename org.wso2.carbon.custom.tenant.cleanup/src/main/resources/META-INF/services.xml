@@ -1,5 +1,4 @@
 <serviceGroup>
-
     <service name="TenantCleanUpAdminService" scope="transportsession">
         <transports>
             <transport>https</transport>
@@ -32,7 +31,5 @@
         <parameter name="AuthorizationAction" locked="false">/permission/protected/manage/modify/tenants</parameter>
         <parameter name="adminService" locked="true">true</parameter>
     </service>
-
     <parameter name="hiddenService" locked="true">true</parameter>
-
 </serviceGroup>
