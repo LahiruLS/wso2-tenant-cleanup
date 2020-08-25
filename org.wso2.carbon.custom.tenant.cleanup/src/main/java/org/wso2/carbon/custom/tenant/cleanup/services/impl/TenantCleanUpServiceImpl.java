@@ -5,7 +5,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.wso2.carbon.CarbonConstants;
 import org.wso2.carbon.caching.impl.CacheManagerFactoryImpl;
-import org.wso2.carbon.context.PrivilegedCarbonContext;
 import org.wso2.carbon.custom.tenant.cleanup.exception.TenantCleanUpServiceException;
 import org.wso2.carbon.custom.tenant.cleanup.internal.TenantCleanUpComponentServiceHolder;
 import org.wso2.carbon.custom.tenant.cleanup.model.ServiceResponse;
@@ -32,7 +31,7 @@ public class TenantCleanUpServiceImpl implements TenantCleanUpService {
     @SuppressWarnings("PackageAccessibility")
     private static final Log log = LogFactory.getLog(TenantCleanUpServiceImpl.class);
     private static TenantCleanUpServiceImpl instance = null;
-    private static ThreadLocal<TenantCleanUpContext> tenantCleanUpContext = new ThreadLocal<>();
+    private static final ThreadLocal<TenantCleanUpContext> tenantCleanUpContext = new ThreadLocal<>();
 
     /**
      * Get an instance from the TenantCleanUpServiceImpl class.s
@@ -145,7 +144,7 @@ public class TenantCleanUpServiceImpl implements TenantCleanUpService {
     @Override
     public Boolean verifyTenantCleanUp(String tenantDomain, int tenantId) {
 
-        boolean verification = false;
+        boolean verification;
         try {
             TenantCleanUpUtils.validateDomain(tenantDomain);
             TenantCleanUpUtils.validateTenantId(tenantId);
@@ -375,7 +374,7 @@ public class TenantCleanUpServiceImpl implements TenantCleanUpService {
     }
 
     public String getCleanUpContextDomainFromThreadLocal() {
-        if (tenantCleanUpContext.get() == null ) {
+        if (tenantCleanUpContext.get() == null) {
             return null;
         }
         return tenantCleanUpContext.get().getTenantDomain();
@@ -383,7 +382,8 @@ public class TenantCleanUpServiceImpl implements TenantCleanUpService {
 
     public void removeCleanUpContextThreadLocal() {
 
-        if (tenantCleanUpContext.get() != null ) {
-            tenantCleanUpContext.remove();        }
+        if (tenantCleanUpContext.get() != null) {
+            tenantCleanUpContext.remove();
+        }
     }
 }

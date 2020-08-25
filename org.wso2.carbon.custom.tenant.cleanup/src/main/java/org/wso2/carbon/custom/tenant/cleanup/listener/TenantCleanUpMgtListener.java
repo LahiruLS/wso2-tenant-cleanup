@@ -92,7 +92,7 @@ public class TenantCleanUpMgtListener extends AbstractIdentityTenantMgtListener 
             RealmService realmService = TenantCleanUpComponentServiceHolder.getInstance().getRealmService();
             RealmConfiguration realmConfiguration = realmService.getBootstrapRealmConfiguration();
 
-            UserStoreManager userStoreManager = null;
+            UserStoreManager userStoreManager;
             try {
                 userStoreManager = realmService.getUserRealm(realmConfiguration).getUserStoreManager();
                 if (userStoreManager instanceof ReadOnlyLDAPUserStoreManager && !userStoreManager.isReadOnly()) {
@@ -160,7 +160,7 @@ public class TenantCleanUpMgtListener extends AbstractIdentityTenantMgtListener 
 
     private void removeUserPortalServiceProvider(int tenantId, String tenantDomain) {
 
-        //TODO:Need to check if the user portal service provider is available and delete it. This is only relavant
+        //TODO:Need to check if the user portal service provider is available and delete it. This is only relevant
         // for Identity server 5.10.0
     }
 
