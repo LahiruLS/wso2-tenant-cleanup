@@ -1,0 +1,243 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://cleanup.tenant.custom.carbon.wso2.org" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ax2100="http://model.cleanup.tenant.custom.carbon.wso2.org/xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://cleanup.tenant.custom.carbon.wso2.org">
+    <wsdl:documentation>TenantCleanUpAdminService</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema xmlns:ns="http://org.apache.axis2/xsd" xmlns:ax2101="http://model.cleanup.tenant.custom.carbon.wso2.org/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://org.apache.axis2/xsd">
+            <xs:import namespace="http://model.cleanup.tenant.custom.carbon.wso2.org/xsd"/>
+            <xs:element name="getTenantIdentifier">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="tenantDomain" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getTenantIdentifierResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="cleanupTenant">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="tenantDomain" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="cleanupTenantResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax2100:ServiceResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="isTenantDeleted">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="tenantDomain" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="isTenantDeletedResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="verifyTenantCleanUp">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="tenantDomain" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="tenantId" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="verifyTenantCleanUpResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://model.cleanup.tenant.custom.carbon.wso2.org/xsd">
+            <xs:complexType name="ServiceResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="code" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="message" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="isTenantDeletedRequest">
+        <wsdl:part name="parameters" element="ns1:isTenantDeleted"/>
+    </wsdl:message>
+    <wsdl:message name="isTenantDeletedResponse">
+        <wsdl:part name="parameters" element="ns1:isTenantDeletedResponse"/>
+    </wsdl:message>
+    <wsdl:message name="verifyTenantCleanUpRequest">
+        <wsdl:part name="parameters" element="ns1:verifyTenantCleanUp"/>
+    </wsdl:message>
+    <wsdl:message name="verifyTenantCleanUpResponse">
+        <wsdl:part name="parameters" element="ns1:verifyTenantCleanUpResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getTenantIdentifierRequest">
+        <wsdl:part name="parameters" element="ns1:getTenantIdentifier"/>
+    </wsdl:message>
+    <wsdl:message name="getTenantIdentifierResponse">
+        <wsdl:part name="parameters" element="ns1:getTenantIdentifierResponse"/>
+    </wsdl:message>
+    <wsdl:message name="cleanupTenantRequest">
+        <wsdl:part name="parameters" element="ns1:cleanupTenant"/>
+    </wsdl:message>
+    <wsdl:message name="cleanupTenantResponse">
+        <wsdl:part name="parameters" element="ns1:cleanupTenantResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="TenantCleanUpAdminServicePortType">
+        <wsdl:operation name="isTenantDeleted">
+            <wsdl:input message="tns:isTenantDeletedRequest" wsaw:Action="urn:isTenantDeleted"/>
+            <wsdl:output message="tns:isTenantDeletedResponse" wsaw:Action="urn:isTenantDeletedResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="verifyTenantCleanUp">
+            <wsdl:input message="tns:verifyTenantCleanUpRequest" wsaw:Action="urn:verifyTenantCleanUp"/>
+            <wsdl:output message="tns:verifyTenantCleanUpResponse" wsaw:Action="urn:verifyTenantCleanUpResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getTenantIdentifier">
+            <wsdl:input message="tns:getTenantIdentifierRequest" wsaw:Action="urn:getTenantIdentifier"/>
+            <wsdl:output message="tns:getTenantIdentifierResponse" wsaw:Action="urn:getTenantIdentifierResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="cleanupTenant">
+            <wsdl:input message="tns:cleanupTenantRequest" wsaw:Action="urn:cleanupTenant"/>
+            <wsdl:output message="tns:cleanupTenantResponse" wsaw:Action="urn:cleanupTenantResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="TenantCleanUpAdminServiceSoap11Binding" type="tns:TenantCleanUpAdminServicePortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="isTenantDeleted">
+            <soap:operation soapAction="urn:isTenantDeleted" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="verifyTenantCleanUp">
+            <soap:operation soapAction="urn:verifyTenantCleanUp" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getTenantIdentifier">
+            <soap:operation soapAction="urn:getTenantIdentifier" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="cleanupTenant">
+            <soap:operation soapAction="urn:cleanupTenant" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="TenantCleanUpAdminServiceSoap12Binding" type="tns:TenantCleanUpAdminServicePortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="isTenantDeleted">
+            <soap12:operation soapAction="urn:isTenantDeleted" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="verifyTenantCleanUp">
+            <soap12:operation soapAction="urn:verifyTenantCleanUp" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getTenantIdentifier">
+            <soap12:operation soapAction="urn:getTenantIdentifier" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="cleanupTenant">
+            <soap12:operation soapAction="urn:cleanupTenant" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="TenantCleanUpAdminServiceHttpBinding" type="tns:TenantCleanUpAdminServicePortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="isTenantDeleted">
+            <http:operation location="isTenantDeleted"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="verifyTenantCleanUp">
+            <http:operation location="verifyTenantCleanUp"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getTenantIdentifier">
+            <http:operation location="getTenantIdentifier"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="cleanupTenant">
+            <http:operation location="cleanupTenant"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="TenantCleanUpAdminService">
+        <wsdl:port name="TenantCleanUpAdminServiceHttpsSoap11Endpoint" binding="tns:TenantCleanUpAdminServiceSoap11Binding">
+            <soap:address location="https://localhost:9443/services/TenantCleanUpAdminService.TenantCleanUpAdminServiceHttpsSoap11Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="TenantCleanUpAdminServiceHttpsSoap12Endpoint" binding="tns:TenantCleanUpAdminServiceSoap12Binding">
+            <soap12:address location="https://localhost:9443/services/TenantCleanUpAdminService.TenantCleanUpAdminServiceHttpsSoap12Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="TenantCleanUpAdminServiceHttpsEndpoint" binding="tns:TenantCleanUpAdminServiceHttpBinding">
+            <http:address location="https://localhost:9443/services/TenantCleanUpAdminService.TenantCleanUpAdminServiceHttpsEndpoint/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
