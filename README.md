@@ -10,6 +10,8 @@ The existing admin service was that it is taking too much time to delete a tenan
 5. Afterword we can clean up the tenant via a script in the database.
 
 Please find the admin service details from this WSDL file the proect root directory. To invoke this admin service you need to be the super admin user with the below permissions.
+
+
 ![Permissions image](/images/permissions.png)
 
 
